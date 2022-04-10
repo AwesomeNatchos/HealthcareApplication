@@ -84,7 +84,7 @@ public class Diary {
     }
 
     public static void main(String[] args) throws IOException {
-        diaryMainMenu(new Users(123, "Natcha", "Uthaug", "q", 1991, "Fanahammaren 24j", true));
+        diaryMainMenu(new Users(1, 2, "n", "Natcha", "Uthaug", 1990, "Fanahammaren 24j", true, BloodType.A ));
 
     }
 }

@@ -1,23 +1,10 @@
 package com.awesomenatchos;
 
 public class FamilyMembers extends Users {
-    String bloodType;
 
 
-    public FamilyMembers(int userID, String firstName, String lastName, String userPassword, int dateOfBirth, String address, Boolean gender, String bloodType) {
-        super(userID, firstName, lastName, userPassword, dateOfBirth, address, gender);
-        this.bloodType = bloodType;
-
-    }
-
-    //GETTERS AND SETTERS
-
-    public String getBloodType() {
-        return bloodType;
-    }
-
-    public void setBloodType(String bloodType) {
-        this.bloodType = bloodType;
+    public FamilyMembers(int loginClass, int userID, String userPassword, String firstName, String lastName, int dateOfBirth, String address, Boolean gender, com.awesomenatchos.BloodType BloodType) {
+        super(loginClass, userID, userPassword, firstName, lastName, dateOfBirth, address, gender, BloodType);
     }
 }
 

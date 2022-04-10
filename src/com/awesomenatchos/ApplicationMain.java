@@ -15,7 +15,8 @@ public class ApplicationMain {
         System.out.println(" 1. Diary");
         System.out.println(" 2. See personal data");
         System.out.println(" 3. See medical info");
-        System.out.println(" 4. Exit");
+        System.out.println(" 4. Create new user");
+        System.out.println(" 5. Exit");
         System.out.println("Please enter your option: ");
         int userOption = scan.nextInt();
         return userOption;
@@ -125,14 +126,22 @@ public class ApplicationMain {
         ArrayList<Patient> patientArrayList = new ArrayList<>();
         ArrayList<Doctor> doctorArrayList = new ArrayList<>();
         ArrayList<Users> adminsArrayList = new ArrayList<>();
+        ArrayList<FamilyMembers> familyMembersArrayList = new ArrayList<>();
+        ArrayList<Users> allUsers = new ArrayList<>();
 
         //Creat admin, doctor, patient, and add them to their list
-        Users admin1 = new Users(123, "Natcha", "Uthaug", "q", 1991, "Fanahammaren 24j", true);
-        Patient patient1 = new Patient(222,"Nina", "Raknes","m",1960,"Sakkviksveien 4",true, "A");
-        Doctor doctor1 = new Doctor(333,"Manny", "McKnotty","m", 1990, "Brooklyn street 5", false,54134,"B");
+        Users admin1 = new Users(1, 11, "a", "Natcha", "Uthaug", 1991, "Fanahammaren 24j", true, null);
+        Doctor doctor1 = new Doctor(2, 22, "b", "Lucas", "McKnotty", 1956, "Brooklyn street 5", false, BloodType.B, 12345);
+        Patient patient1 = new Patient(3, 33, "c", "Silje", "Fram", 2005, "Sakkviksveien 4", true, BloodType.BO);
+        FamilyMembers family1 = new FamilyMembers(4, 44, "d", "Amir", "Fallah", 1996, "Szegeti 12", false, BloodType.B);
         patientArrayList.add(patient1);
         doctorArrayList.add(doctor1);
         adminsArrayList.add(admin1);
+        familyMembersArrayList.add(family1);
+        allUsers.add(admin1);
+        allUsers.add(doctor1);
+        allUsers.add(patient1);
+        allUsers.add(family1);
 
 
         Scanner scan = new Scanner(System.in);
@@ -150,6 +159,9 @@ public class ApplicationMain {
                     medicalData(admin1);
                     break;
                 case 4:
+                    allUsers.add(Users.creat_new_user());
+                    break;
+                case 5:
                     System.out.println("Goodbye!");
                     flag = false;
                 default:
@@ -159,4 +171,5 @@ public class ApplicationMain {
         } while (flag);
 
     }
+
 }

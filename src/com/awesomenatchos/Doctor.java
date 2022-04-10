@@ -2,16 +2,14 @@ package com.awesomenatchos;
 
 public class Doctor extends Users{
     int drLisenceID;
-    String bloodType;
 
-    public Doctor(int userID, String firstName, String lastName, String userPassword, int dateOfBirth, String address, Boolean gender, int drLisenceID, String bloodType) {
-        super(userID, firstName, lastName, userPassword, dateOfBirth, address, gender);
+    public Doctor(int loginClass, int userID, String userPassword, String firstName, String lastName, int dateOfBirth, String address, Boolean gender, com.awesomenatchos.BloodType BloodType, int drLisenceID) {
+        super(loginClass, userID, userPassword, firstName, lastName, dateOfBirth, address, gender, BloodType);
         this.drLisenceID = drLisenceID;
-        this.bloodType = bloodType;
-
     }
 
-    //GETTERS AND SETTERS
+
+//GETTERS AND SETTERS
 
     public int getDrLisenceID() {
         return drLisenceID;
@@ -21,12 +19,5 @@ public class Doctor extends Users{
         this.drLisenceID = drLisenceID;
     }
 
-    public String getBloodType() {
-        return bloodType;
-    }
-
-    public void setBloodType(String bloodType) {
-        this.bloodType = bloodType;
-    }
 
 }
