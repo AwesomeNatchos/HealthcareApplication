@@ -1,22 +1,33 @@
 package com.awesomenatchos;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
+/*
+* Save user to XML file
+* txt, csv
+* */
 public class ApplicationMain {
     public static int mainMenuPatient() {
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("    WELCOME TO HEALTH");
+        System.out.println("    WELCOME TO HEALTH ");
         System.out.println("---------MENU--------");
         System.out.println("Options:");
         System.out.println(" 1. Diary");
         System.out.println(" 2. See personal data");
         System.out.println(" 3. See medical info");
         System.out.println(" 4. Create new user");
-        System.out.println(" 5. Exit");
+        System.out.println(" 5. See users");
+        System.out.println(" 6. Exit");
         System.out.println("Please enter your option: ");
         int userOption = scan.nextInt();
         return userOption;
@@ -119,6 +130,73 @@ public class ApplicationMain {
         System.out.println("Date of birth: " + userName.getDateOfBirth());
         System.out.println("Gender " + userName.getGender());
     }
+    public static ArrayList<Users> readUsersFromXml(ArrayList<Users>allUsers) {
+        String filepath = "C:\\Users\\Natcha\\IdeaProjects\\HealthcareApplication\\src\\com\\awesomenatchos\\Person.xml";
+        try {
+            DocumentBuilderFactory documentBuilderFactory
+                    = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            Document document = documentBuilder.parse(filepath);
+
+            Element rootElement = document.getDocumentElement();
+            System.out.println(rootElement.getNodeName());
+            System.out.println(rootElement.getNodeType());
+            System.out.println("Element node short value: " + Node.ELEMENT_NODE);
+            System.out.println("Text node short value: " + Node.TEXT_NODE);
+            //System.out.println(rootElement.getTextContent());
+
+            NodeList childNodeList = rootElement.getChildNodes();
+            Node node;
+            for (int i = 0; i < childNodeList.getLength(); i++) {
+                node = childNodeList.item(i);
+                /*
+                System.out.println(i + ". node:");
+                System.out.println(node.getNodeType());
+                System.out.println(node.getNodeName());
+                System.out.println(node.getTextContent());
+                 */
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    NodeList childNodesOfUserTag = node.getChildNodes();
+
+                    //Declairing variable
+                    String loginClass = "", userID = "", userPassword = "", firstName = "", lastName = "", dateOfBirth = "", address = "", gender = "", BloodType = "";
+                    //String name = "", birthYear = "", address = "", eyeColor = "";
+
+
+                    for (int j = 0; j < childNodesOfUserTag.getLength(); j++) {
+                        Node childNodeOfUserTag = childNodesOfUserTag.item(j);
+                        if (childNodeOfUserTag.getNodeType() == Node.ELEMENT_NODE) {
+                            switch (childNodeOfUserTag.getNodeName()) {
+                                case "loginClass" -> loginClass = childNodeOfUserTag.getTextContent();
+                                case "userID" -> userID = childNodeOfUserTag.getTextContent();
+                                case "userPassword" -> userPassword = childNodeOfUserTag.getTextContent();
+                                case "firstName" -> firstName = childNodeOfUserTag.getTextContent();
+                                case "lastName" -> lastName = childNodeOfUserTag.getTextContent();
+                                case "dateOfBirth" -> dateOfBirth = childNodeOfUserTag.getTextContent();
+                                case "address" -> address = childNodeOfUserTag.getTextContent();
+                                case "gender" -> gender = childNodeOfUserTag.getTextContent();
+                                case "BloodType" -> BloodType = childNodeOfUserTag.getTextContent();
+                                /*
+                                case "name" -> name = childNodeOfUserTag.getTextContent();
+                                case "birthYear" -> birthYear = childNodeOfUserTag.getTextContent();
+                                case "address" -> address = childNodeOfUserTag.getTextContent();
+                                case "eyeColor" -> eyeColor = childNodeOfUserTag.getTextContent();
+
+                                 */
+                            }
+                        }
+                    }
+                    allUsers.add(new Users(Integer.parseInt(loginClass),Integer.parseInt(userID),userPassword,firstName,lastName,Integer.parseInt(dateOfBirth),
+                            address, Boolean.parseBoolean(gender) ,com.awesomenatchos.BloodType.valueOf(BloodType)));
+                            //name, Integer.parseInt(birthYear), address,
+                            //EyeColor.valueOf(eyeColor)));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return allUsers;
+    }
 
     public static void main(String[] args) throws IOException {
 
@@ -159,9 +237,12 @@ public class ApplicationMain {
                     medicalData(admin1);
                     break;
                 case 4:
+                    //Save the users to this layer
                     allUsers.add(Users.creat_new_user());
                     break;
                 case 5:
+                    readUsersFromXml(allUsers);
+                case 6:
                     System.out.println("Goodbye!");
                     flag = false;
                 default:

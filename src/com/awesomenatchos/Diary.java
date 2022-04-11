@@ -22,6 +22,7 @@ public class Diary {
     }
     public static void diaryMainMenu(Users userName) throws IOException {
 
+
         Scanner scan = new Scanner(System.in);
         System.out.println("----- DIARY-----");
         System.out.println("Name " + userName.firstName + " " + userName.getLastName());

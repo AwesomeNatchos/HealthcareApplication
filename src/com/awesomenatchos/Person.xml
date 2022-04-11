@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Users>
+    <Users>
+        <logingClass>1</logingClass>
+        <userID>11</userID>
+        <userPassword>nn</userPassword>
+        <firstName>Natcha</firstName>
+        <lastName>Uthaug</lastName>
+        <dateOfBirth>1991</dateOfBirth>
+        <address>Fanahammaren 24j</address>
+        <gender>true</gender>
+        <BloodType>AB</BloodType>
+    </Users>
+    <Doctor>
+        <loginClass>2</loginClass>
+        <userID>22</userID>
+        <userPassword>nn</userPassword>
+        <firstName>Natcha</firstName>
+        <lastName>Uthaug</lastName>
+        <dateOfBirth>1991</dateOfBirth>
+        <address>Fanahammaren 24j</address>
+        <gender>true</gender>
+        <BloodType>AB</BloodType>
+        <drLicenceID>999</drLicenceID>
+    </Doctor>
+    <Patient>
+        <loginClass>3</loginClass>
+        <userID>33</userID>
+        <userPassword>nn</userPassword>
+        <firstName>Amir</firstName>
+        <lastName>Fallah</lastName>
+        <dateOfBirth>1996</dateOfBirth>
+        <address>Szegeti 8B</address>
+        <gender>false</gender>
+        <BloodType>B</BloodType>
+    </Patient>
+    <FamilyMembers>
+        <loginClass>4</loginClass>
+        <userID>44</userID>
+        <userPassword>nn</userPassword>
+        <firstName>Cinnamon</firstName>
+        <lastName>Zen</lastName>
+        <dateOfBirth>2008</dateOfBirth>
+        <address>Szegeti 12</address>
+        <gender>true</gender>
+        <BloodType>O</BloodType>
+    </FamilyMembers>
+</Users>
